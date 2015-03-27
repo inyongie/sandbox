@@ -1,4 +1,4 @@
-package sandbox;
+package codejam;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Vector;
 
-public class StoreCredit {
+public class GCJStoreCredit {
 
     public static void main(String[] args) {
 

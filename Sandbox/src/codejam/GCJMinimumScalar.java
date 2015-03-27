@@ -1,11 +1,11 @@
-package sandbox;
+package codejam;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class MinimumScalar {
+public class GCJMinimumScalar {
 
 	public static void merge(Integer[] array, Integer[] copy, int start, int mid, int end, boolean asc) {
 		for(int i = start; i <= end; i++) {

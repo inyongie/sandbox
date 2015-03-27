@@ -1,3 +1,5 @@
+package codejam;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -29,6 +31,8 @@ public class GCJAlienLanguage {
         }
     }
 
+    // Ditched getting the combinations since it is basically Brute Force.
+    // This approach cannot even solve the small case.
     public static void getCombinations(Vector<ArrayList<String>> inputList, ArrayList<String> combinations) {
         String currentValue = "";
         combinationHelper(currentValue, inputList, combinations);
@@ -52,6 +56,7 @@ public class GCJAlienLanguage {
         return resultQ;
     }
 
+    // Preferred approach of fitting each dictionary word into each ambiguous word.
     public static boolean containsWord(String dictionaryWord, Vector<ArrayList<String>> cleanedList) {
         for(int i=0; i<dictionaryWord.length();i++) {
             ArrayList<String> temp = cleanedList.get(i);

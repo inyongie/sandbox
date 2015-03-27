@@ -1,3 +1,5 @@
+package codejam;
+
 import javafx.util.Pair;
 
 import java.io.BufferedReader;
