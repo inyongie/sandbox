@@ -11,7 +11,7 @@ import java.util.HashSet;
  */
 public class GCJWelcomeCodeJam {
     private static final String match = "welcome to code jam";
-    private static final HashSet<Character> matchSet = new HashSet<>();
+    private static final HashSet<Character> matchSet = new HashSet<Character>();
     
     static {
     	matchSet.add('w');
