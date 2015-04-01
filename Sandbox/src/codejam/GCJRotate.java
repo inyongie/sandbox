@@ -8,9 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Stack;
-import java.io.InputStreamReader;
 
-class Ideone {
+public class GCJRotate {
 
     public static void rotateBoard(Character[][] gameBoard, int boardLength) {
         // Rotation of 90 degrees
@@ -149,9 +148,8 @@ class Ideone {
         try {
             // Uncomment appropriate input location
 //            in = new BufferedReader(new FileReader("F:\\code\\rotate_test.txt"));
-            // in = new BufferedReader(new FileReader("F:\\code\\rotate_A-small-practice.in"));
+            in = new BufferedReader(new FileReader("F:\\code\\rotate_A-small-practice.in"));
 //            in = new BufferedReader(new FileReader("C:\\code\\welcome_C-large-practice.in"));
-in = new BufferedReader(new InputStreamReader(System.in));
 
             String casesStr = in.readLine();
             int cases = Integer.parseInt(casesStr);
