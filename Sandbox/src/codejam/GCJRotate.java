@@ -8,8 +8,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Stack;
+import java.io.InputStreamReader;
 
-public class GCJRotate {
+class Ideone {
 
     public static void rotateBoard(Character[][] gameBoard, int boardLength) {
         // Rotation of 90 degrees
@@ -63,93 +64,78 @@ public class GCJRotate {
 
     public static int findLongestStreak(Character[][] gameBoard, int boardLength, char value) {
         int maximumStreak = 0;
-
-        // Find longest Horizontal Streak
+        
         for(int j=0; j<boardLength; j++) {
-            int maxTemp = 0;
             int counter = 0;
-            for (int k = 0; k < boardLength; k++) {
-                if(gameBoard[k][j].equals(value)) {
-                    counter++;
-                    if(k==boardLength-1) {
-                        maxTemp = Math.max(maxTemp, counter);
-                    }
-                }
-                else {
-                    maxTemp = Math.max(maxTemp, counter);
-                    counter = 0;
-                }
-            }
-            maximumStreak = Math.max(maximumStreak,maxTemp);
-        }
-
-        // Find longest Vertical Streak
-        for(int j=0; j<boardLength; j++) {
-            int maxTemp = 0;
-            int counter = 0;
+            // Find longest Vertical Streak
             for (int k = 0; k < boardLength; k++) {
                 if(gameBoard[j][k].equals(value)) {
                     counter++;
                     if(k==boardLength-1) {
-                        maxTemp = Math.max(maxTemp, counter);
+                        maximumStreak = Math.max(maximumStreak, counter);
                     }
                 }
                 else {
-                    maxTemp = Math.max(maxTemp, counter);
+                    maximumStreak = Math.max(maximumStreak, counter);
                     counter = 0;
                 }
             }
-            maximumStreak = Math.max(maximumStreak,maxTemp);
+            
+            // Find longest Horizontal Streak
+            counter = 0;
+            for (int k = 0; k < boardLength; k++) {
+                if(gameBoard[k][j].equals(value)) {
+                    counter++;
+                    if(k==boardLength-1) {
+                        maximumStreak = Math.max(maximumStreak, counter);
+                    }
+                }
+                else {
+                    maximumStreak = Math.max(maximumStreak, counter);
+                    counter = 0;
+                }
+            }
         }
 
         // Find longest left -> right diagonal streak
         // y = x + y graph eq
         for(int j=(boardLength-1)*(-1); j<boardLength; j++) {
-            int maxTemp = 0;
             int counter = 0;
             for (int k = 0; k < boardLength; k++) {
                 if(k+j < 0) continue;
-                if(k+j >= boardLength) {
-                    maxTemp = Math.max(maxTemp, counter);
+                if(k+j == boardLength || k == boardLength) {
+                    maximumStreak = Math.max(maximumStreak, counter);
                     break;
                 }
                 if(gameBoard[k][k+j].equals(value)) {
                     counter++;
-                    if(k==boardLength-1) {
-                        maxTemp = Math.max(maxTemp, counter);
-                    }
+                    
                 }
                 else {
-                    maxTemp = Math.max(maxTemp, counter);
+                    maximumStreak = Math.max(maximumStreak, counter);
                     counter = 0;
                 }
             }
-            maximumStreak = Math.max(maximumStreak,maxTemp);
         }
 
         // Find longest right -> left diagonal streak
         // y = -x + y graph eq
-        for(int j=(boardLength-1)*(-1); j<boardLength; j++) {
-            int maxTemp = 0;
+        for(int j=0; j<((boardLength*2)); j++) {
             int counter = 0;
             for (int k = 0; k < boardLength; k++) {
-                if((k*-1)+j < 0) continue;
-                if(k+j >= boardLength) {
-                    maxTemp = Math.max(maxTemp, counter);
+                if((k*-1)+j < 0 || (k*-1)+j > boardLength-1 || (k*-1) > boardLength-1) continue;
+                if((k*-1)+j == boardLength || k == boardLength) { 
+                    maximumStreak = Math.max(maximumStreak, counter);
                     break;
                 }
                 if(gameBoard[k][(k*-1)+j].equals(value)) {
                     counter++;
-                    if(k==boardLength-1) {
-                        maxTemp = Math.max(maxTemp, counter);
-                    }
                 }
                 else {
-                    maxTemp = Math.max(maxTemp, counter);
+                    maximumStreak = Math.max(maximumStreak, counter);
                     counter = 0;
                 }
             }
-            maximumStreak = Math.max(maximumStreak,maxTemp);
         }
 
         //return the max;
@@ -163,9 +149,9 @@ public class GCJRotate {
         try {
             // Uncomment appropriate input location
 //            in = new BufferedReader(new FileReader("F:\\code\\rotate_test.txt"));
-            in = new BufferedReader(new FileReader("F:\\code\\rotate_A-small-practice.in"));
+            // in = new BufferedReader(new FileReader("F:\\code\\rotate_A-small-practice.in"));
 //            in = new BufferedReader(new FileReader("C:\\code\\welcome_C-large-practice.in"));
-
+in = new BufferedReader(new InputStreamReader(System.in));
 
             String casesStr = in.readLine();
             int cases = Integer.parseInt(casesStr);
@@ -201,10 +187,8 @@ public class GCJRotate {
                 bLength = findLongestStreak(gameBoard, dimSize, 'B');
 
 
-                if(bLength >= winStreak && rLength >= winStreak && bLength == rLength) {
+                if(bLength >= winStreak && rLength >= winStreak) {
                     winner = "Both";
-//                    else if(bLength > rLength) winner = "Blue";
-//                    else if(rLength > bLength) winner = "Red";
                 } else if(bLength < winStreak && rLength < winStreak) {
                 	winner = "Neither";
                 } else if(bLength > rLength && bLength >= winStreak) {
@@ -212,7 +196,7 @@ public class GCJRotate {
                 } else if(rLength > bLength && rLength >= winStreak) {
                 	winner = "Red";
                 }
-//
+                
                 System.out.println("Case #" + i + ": " + winner);
             }
             in.close();
