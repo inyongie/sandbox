@@ -10,6 +10,9 @@ import java.util.ArrayList;
 
 /**
  * Created by ichung on 3/26/2015.
+ * GCJRopeIntranet
+ * https://code.google.com/codejam/contest/619102/dashboard#s=p0
+ * I believe this passes all cases
  */
 public class GCJRopeIntranet {
 

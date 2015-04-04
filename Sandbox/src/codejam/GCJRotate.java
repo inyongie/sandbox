@@ -9,6 +9,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Stack;
 
+// GCJRotate
+// https://code.google.com/codejam/contest/351101/dashboard#s=p1
+// I believe this passes all cases
+
 public class GCJRotate {
 
     public static void rotateBoard(Character[][] gameBoard, int boardLength) {

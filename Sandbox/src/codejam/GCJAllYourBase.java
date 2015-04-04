@@ -1,11 +1,16 @@
-package codejam
+package codejam;
 
-import java.util.*;
-import java.lang.*;
-import java.io.*;
-import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Stack;
 
-/* Name of the class has to be "Main" only if the class is public. */
+// GCJAllYourBase
+// I believe all cases passed with this
+
 public class GCJAllYourBase
 {
 	public static Integer getMinBaseValue(String inputStr, HashMap<Character,Integer> convertMap) {

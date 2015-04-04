@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Vector;
 
+// GCJStoreCredit
+// https://code.google.com/codejam/contest/351101/dashboard#s=p0
+// I believe this passes all cases
+
 public class GCJStoreCredit {
 
     public static void main(String[] args) {

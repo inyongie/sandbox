@@ -9,6 +9,9 @@ import java.io.IOException;
 
 /**
  * Created by ichung on 3/26/2015.
+ * GCJFileFixit
+ * https://code.google.com/codejam/contest/635101/dashboard#s=p0
+ * All test cases pass with this
  */
 
 public class GCJFileFixit {

@@ -7,6 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+// GCJMinimumScalar
+// https://code.google.com/codejam/contest/32016/dashboard#s=p0
+// Only Small Case Passes
 public class GCJMinimumScalar {
 
 	public static void main(String[] args) {

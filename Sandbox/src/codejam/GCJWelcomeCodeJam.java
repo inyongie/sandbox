@@ -8,6 +8,9 @@ import java.util.HashSet;
 
 /**
  * Created by ichung on 3/30/2015.
+ * GCJ WelcomeCodeJam
+ * https://code.google.com/codejam/contest/90101/dashboard#s=p2
+ * I believe this passes all cases
  */
 public class GCJWelcomeCodeJam {
     private static final String match = "welcome to code jam";

@@ -10,6 +10,9 @@ import java.util.Vector;
 
 /**
  * Created by ichung on 3/26/2015.
+ * GCJ AlienLanguage
+ * https://code.google.com/codejam/contest/90101/dashboard#s=p0
+ * All cases passed with this
  */
 public class GCJAlienLanguage {
 
