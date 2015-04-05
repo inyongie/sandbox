@@ -1,12 +1,11 @@
 package codejam;
 
-import structures.TreeNode;
+import sorts.IntMergeSort;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
 
 /**
  * Created by ichung on 4/3/2015.
@@ -22,6 +21,30 @@ public class GCJBribe {
     // Do try again next time.
 
 
+    // DP Attempt after reading up on a solution
+    // This will be a top-down approach where the subsequence will be defined as:
+    // B(m,n) = minimum bribe between cells m to n
+    // Bribe cost of freeing inmate X = Current cost + B(minIndex + index of inmate X-1) + B(index of inmate X+1, maxIndex)
+    private static int runDPSolution(Integer[][] cache, Integer[] releaseArray, int minIndex, int maxIndex) {
+        if(maxIndex-minIndex<2) return 0;
+        if(cache[minIndex][maxIndex] != null) return cache[minIndex][maxIndex];
+
+        int min = -1;
+        for(int i=minIndex+1; i<maxIndex; i++) {
+            int cost = (releaseArray[i]-releaseArray[minIndex]-1) + (releaseArray[maxIndex]-releaseArray[i]-1);
+            cost += runDPSolution(cache,releaseArray,minIndex,i) + runDPSolution(cache,releaseArray,i,maxIndex);
+            if(min == -1) min = cost;
+            else
+                min = Math.min(cost, min);
+        }
+
+        cache[minIndex][maxIndex] = min;
+        return min;
+    }
+
+    //
+
+    /* Failed Methods
     private static int getIndexClosestToMid(int startIndex, int endIndex, final HashSet<Integer> releaseSet) {
         double midIndexDouble = getMidIndex(startIndex, endIndex);
 
@@ -126,6 +149,7 @@ public class GCJBribe {
         System.out.println(root.getValue());
         printInOrderTreeTraversal(root.getRightNode());
     }
+    */
 
     public static void main(String[] args) {
           BufferedReader in;
@@ -138,6 +162,7 @@ public class GCJBribe {
             int cases = Integer.parseInt(in.readLine());
 
             for(int i = 1; i<=cases; i++) {
+                /* The Failed Approach
                 String[] valueStr = in.readLine().split(" ");
                 int arraySize = Integer.parseInt(valueStr[0]);
                 int numReleased = Integer.parseInt(valueStr[1]);
@@ -161,9 +186,39 @@ public class GCJBribe {
                 // Test with tree traversal output
 //                printInOrderTreeTraversal(root);
 
-
                 // Count Minumum Bribe
                 int minimumBribe = getMinimumBribe(root, releaseSet);
+                */
+
+
+                // Attempting DP Approach
+                // Read up a solution, but implementing from understanding
+                // (Have to say, I did cheat a bit on index values..)
+                String[] valueStr = in.readLine().split(" ");
+                int arraySize = Integer.parseInt(valueStr[0]);
+                int numReleased = Integer.parseInt(valueStr[1]);
+
+                // cache of answers
+                // 101 because maximum number of prisoners freed is 100 + 2 end values.
+                Integer[][] cache = new Integer[102][102];
+
+                // populate release indices
+                String[] releaseArray = in.readLine().split(" ");
+                // +2 for the physical boundary of ends
+                Integer[] newReleaseArray = new Integer[numReleased+2];
+                for(int j=0; j<numReleased; j++) {
+                    newReleaseArray[j] = Integer.parseInt(releaseArray[j]);
+                }
+                // boundary values of ends
+                // This is required for the algorithm to recognize the ends of the "prison", making the released cells
+                // behave the same way as an end
+                newReleaseArray[numReleased] = 0;
+                newReleaseArray[numReleased+1] = arraySize+1;
+
+                // sort the release array
+                IntMergeSort.sort(newReleaseArray,true);
+
+                int minimumBribe = runDPSolution(cache,newReleaseArray,0,newReleaseArray.length-1);
 
                 System.out.println("Case #" + i + ": " + minimumBribe);
             }
