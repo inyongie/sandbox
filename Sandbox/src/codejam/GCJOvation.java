@@ -1,4 +1,4 @@
-package sandbox;
+package codejam;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -59,7 +59,6 @@ public class GCJOvation {
             }
             in.close();
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
